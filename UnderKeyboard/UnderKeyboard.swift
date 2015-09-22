@@ -2,7 +2,6 @@ import UIKit
 
 let tegUnderKeyboard = UnderKeyboard()
 
-@objc
 /**
 
 Moves scroll view content from under the keyboard on iOS. It adjusts the bottom inset of the scroll view by the height of the keyboard when it is shown.
@@ -51,7 +50,7 @@ public class UnderKeyboard {
     NSNotificationCenter.defaultCenter().removeObserver(self)
   }
   
-  func keyboardDidShow(notification: NSNotification) {
+  @objc private func keyboardDidShow(notification: NSNotification) {
     if let userInfo = notification.userInfo,
       let value = userInfo[UIKeyboardFrameBeginUserInfoKey] as? NSValue {
         
@@ -69,7 +68,7 @@ public class UnderKeyboard {
     }
   }
   
-  func keyboardWillHide(notification: NSNotification) {
+  @objc private func keyboardWillHide(notification: NSNotification) {
     scrollView?.contentInset = UIEdgeInsetsZero;
     scrollView?.scrollIndicatorInsets = UIEdgeInsetsZero;
   }
